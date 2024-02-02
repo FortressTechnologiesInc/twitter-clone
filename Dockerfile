@@ -4,14 +4,12 @@ FROM node:14-alpine
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
+# Clone the Twitter clone repository from GitHub
+RUN apk add --no-cache git \
+    && git clone https://github.com/FortressTechnologiesInc/twitter-clone.git .
 
 # Install dependencies
 RUN npm install
-
-# Copy the remaining application code to the working directory
-COPY . .
 
 # Build the React app
 RUN npm run build
