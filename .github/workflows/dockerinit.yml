@@ -1,0 +1,21 @@
+name: Docker Init
+
+on: 
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Initialize Docker
+      uses: docker/init@v1
+      with:
+        registry-url: ${{ secrets.REGISTRY_URL }}
+        registry-username: ${{ secrets.REGISTRY_USERNAME }}
+        registry-password: ${{ secrets.REGISTRY_PASSWORD }}
